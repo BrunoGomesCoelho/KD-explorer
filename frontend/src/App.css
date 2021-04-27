@@ -6,7 +6,19 @@
   height: 40vmin;
   pointer-events: none;
 }
-
+.container {
+  display: flex;
+  flex-direction: row;
+}
+.left {
+  display: flex;
+  flex-direction: column;
+}
+.superClasses {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 30px;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
