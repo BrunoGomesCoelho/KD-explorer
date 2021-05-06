@@ -50,7 +50,7 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
             root: {
                 display: 'flex',
                 flexWrap: 'wrap',
-                justifyContent: 'space-around',
+                justifyContent: 'flex-start',
                 overflow: 'hidden',
                 backgroundColor: theme.palette.background.paper,
                 // paddingTop: "10px",
@@ -60,11 +60,17 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
                 marginLeft: "10px",
                 marginTop: "10px",
                 marginRight: "1px",
-                marginBottom: "10px"
+                marginBottom: "10px",
+                height: "1400px"
+                // overflowY: "scroll"
             },
             gridList: {
-                width: 960,
-                height: height,
+                width: "100%",
+                height: "100%",
+                overflow: "scroll",
+                marginTop: "20px",
+                marginLeft: "20px"
+
             },
             icon: {
                 color: 'rgba(255, 255, 255, 0.54)',
@@ -251,20 +257,17 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
     }
 
     let renderImages = () => {
-        let currentRow = [];
-        let renderedRows = [];
-        let expandingCol = -1;
-        for (let image of sortedImages.slice(0, 30)) {
+        return (
+            <GridList cellHeight={160} className={classes.gridList} cols={6}>
+                {imageConfigs.map((image) => (
+                    <GridListTile key={image.url} cols={ 1}>
+                        <img src={image.url} alt={image.class} />
+                    </GridListTile>
+                ))}
+            </GridList>
 
-            currentRow.push(image);
-            if (currentRow.length === 3) {
-                renderedRows.push(renderRow(currentRow, 0));
-                currentRow = [];
-                expandingCol = -1;
-            } else {
-            }
-        }
-        return renderedRows.map(d => d);
+        )
+
     }
     return (
         <Card className={classes.root}>
@@ -313,13 +316,13 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
                                   label="Demo Data"
                 />
             </div>
-            <div className={classes.gridContainer}>
+            {/*<div className={classes.gridContainer}>*/}
                 {
                     renderImages()
                 }
 
 
-            </div>
+            {/*</div>*/}
 
         </Card>
     )
