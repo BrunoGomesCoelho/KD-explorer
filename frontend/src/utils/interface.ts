@@ -22,4 +22,10 @@ interface SuperClassConfig {
     name: string,
     classes: Array<string>
 }
-export type { ImageConfig, ImageData, ClassPrediction, ClassConfig, SuperClassConfig }
+
+interface ImageQuery {
+    label: string,
+    class: string,
+}
+
+export type { ImageConfig, ImageData, ClassPrediction, ClassConfig, SuperClassConfig, ImageQuery }

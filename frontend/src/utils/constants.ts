@@ -11,5 +11,5 @@ function generateClassConfigs(): Array<ClassConfig>{
     }
     return arr;
 }
-
-export {generateClassConfigs}
+const METRICS = ["accuracy", "recall", "precision", "f1"]
+export {generateClassConfigs, METRICS}

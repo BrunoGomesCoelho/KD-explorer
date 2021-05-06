@@ -86,6 +86,7 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
                 paddingBottom: "4px",
                 alignItems: "flex-end",
                 flexGrowth: 0,
+                height: "100px"
             },
             headerItem: {
                 marginLeft: "5px",

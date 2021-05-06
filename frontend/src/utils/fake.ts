@@ -1,4 +1,5 @@
 import {ClassPrediction, ImageConfig, SuperClassConfig} from "./interface";
+import {getClassList} from "./data";
 
 function generateFakeImageConfigs(): Array<ImageConfig>{
     let arr: Array<ImageConfig> = []
@@ -14,7 +15,8 @@ function generateFakeImageConfigs(): Array<ImageConfig>{
 
 function generateFakeClassPrediction(): Array<ClassPrediction>{
     let arr: Array<ClassPrediction> = [];
-    let classes = ["airplane", "automobile", "bird", "cat", "deer", "dog", "frog", "horse", "ship", "truck"]
+    let classes = getClassList();
+    console.log(classes)
     for (let classname of classes){
         for(let prediction of classes){
             arr.push({
@@ -29,9 +31,18 @@ function generateFakeClassPrediction(): Array<ClassPrediction>{
 function generateFakeAccuracy(superClasses: Array<SuperClassConfig>){
     let accuracy = new Map<string, Array<number>>()
     for (let config of superClasses){
-        let teacherAccuracy = Math.random();
-        accuracy.set(config.name, [teacherAccuracy, teacherAccuracy * Math.random()]);
+        let teacherAccuracy = 0.3 * Math.random() + 0.7;
+        accuracy.set(config.name, [teacherAccuracy, 0.5 + 0.5 * teacherAccuracy * Math.random()]);
     }
     return accuracy;
 }
-export {generateFakeImageConfigs, generateFakeClassPrediction, generateFakeAccuracy}
+
+function generateFakeMetrics(superClasses: Array<SuperClassConfig>){
+    let metricNames = ["accuracy", "recall", "precision", "f1"]
+    let metrics = new Map<string, Map<string, Array<number>>>();
+    for (let name of metricNames){
+        metrics.set(name, generateFakeAccuracy(superClasses));
+    }
+    return metrics
+}
+export {generateFakeImageConfigs, generateFakeClassPrediction, generateFakeAccuracy, generateFakeMetrics}

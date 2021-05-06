@@ -1,7 +1,7 @@
-div.tooltip {
+.radial-bar-tooltip {
     position: absolute;
-    width: 100px;
-    height: 45px;
+    width: 240px;
+    height: 35px;
     padding: 2px;
     text-align: left;
     font: 12px sans-serif;
@@ -11,7 +11,4 @@ div.tooltip {
     pointer-events: none;
     padding-left: 8px;
     opacity: 0;
-}
-.matrixCard {
-
 }

@@ -1,16 +1,22 @@
 import React, {ComponentProps, CSSProperties, useEffect, useState} from 'react';
-import {ClassConfig, ClassPrediction} from "../utils/interface";
+import {ClassConfig, ClassPrediction, SuperClassConfig} from "../utils/interface";
 import * as d3 from "d3";
 import "./MatrixView.css"
+import {Card} from "@material-ui/core";
+import {searchClassConfigByName, searchSuperConfigByClassName} from "../utils/data";
 interface MatrixViewProps {
     width: number,
     height: number,
     predictions: Array<ClassPrediction>,
     vid: string,
-    classConfigs: Array<ClassConfig>
+    classConfigs: Array<ClassConfig>,
+    superClassConfigs: Array<SuperClassConfig>
+    name: string,
+    highlightSuper?: SuperClassConfig,
+    setHighlightSuper: (config: SuperClassConfig) => void
 }
 
-function MatrixView ({width, height, vid, classConfigs, predictions}: MatrixViewProps){
+function MatrixView ({width, height, vid, classConfigs, predictions, name, superClassConfigs, highlightSuper, setHighlightSuper}: MatrixViewProps){
     const margin = {
         top: 30,
         left: 30,
@@ -21,12 +27,26 @@ function MatrixView ({width, height, vid, classConfigs, predictions}: MatrixView
     let innerHeight = height - margin.top - margin.bottom;
     let svgId = "matrix-" + vid;
     let containerId = "matrix-container-" + vid;
+    let colorMap = (prediction: ClassPrediction) =>{
+
+        let baseColor = d3.interpolateBlues(prediction.probability)
+        if (highlightSuper && (highlightSuper.classes.includes(prediction.prediction) || highlightSuper.classes.includes(prediction.class) )){
+            return baseColor
+        }
+        let baseD3Color = d3.hsl(baseColor);
+        baseD3Color.s = baseD3Color.s * 0.3
+        baseD3Color.l = baseD3Color.l * 1.2;
+        let color = baseD3Color.formatRgb();
+        return color
+    }
+
     useEffect(()=>{
         let tooltip = d3.select("#" + containerId).select(".tooltip");
         let svg = d3.select("#"+svgId)
             .attr("width", width)
             .attr("height", height)
-            .append("g")
+            // .append("g")
+        svg.html("")
         let matrixContainer = svg.append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -52,7 +72,7 @@ function MatrixView ({width, height, vid, classConfigs, predictions}: MatrixView
             .attr("y", 0)
             .attr("width", xBandWidth)
             .attr("height", yBandHeight)
-            .attr("fill", d=>d3.interpolateBlues(d.probability))
+            .attr("fill", colorMap)
             .on("mouseover", function(e, d) {
                 // console.log(d);
                 // console.log(e);
@@ -67,19 +87,34 @@ function MatrixView ({width, height, vid, classConfigs, predictions}: MatrixView
                 tooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
-            });
+            })
+            .on("click", function (e, d) {
+                console.log(d);
+                let config = searchSuperConfigByClassName(d.class, classConfigs, superClassConfigs);
+                if(config){
+                    setHighlightSuper(config);
+                }
+        });
+        ;
         ;
         // let yAxis = d3.axisLeft();
 
 
-    }, [])
+    }, [highlightSuper])
     return (
-        <div id={containerId}>
-            <svg id={svgId} width={width} height={height}>
+        <Card className={"matrixCard"}>
+            <div>
+                <h3>{name}</h3>
+            </div>
+            <div id={containerId}>
+                <svg id={svgId} width={width} height={height}>
 
-            </svg>
-            <div className={"tooltip"}></div>
-        </div>
+                </svg>
+                <div className={"tooltip"}></div>
+            </div>
+
+        </Card>
+
     )
 }
 export default MatrixView

@@ -1,0 +1,7 @@
+.featuremap-placeholder {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    width: 400px;
+    height: 300px;
+}
