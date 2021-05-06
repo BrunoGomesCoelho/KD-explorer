@@ -36,21 +36,48 @@ function ResultHeader({superClassConfigs, cellWidth, indexWidth} : HeaderProps){
     let formatName = (name: string) => {
         return name.slice(0, 4)
     }
-    return (
-        <div className={"result-row"}>
-            <div  className={"result-row-name"}>
-                <h3>{""}</h3>
-            </div>
-            {superClassConfigs.map((config, i) => {
-                return (
-                    <div className={"result-header-cell"}>
-                        <h4>
-                            {formatName(config.name)}
-                        </h4>
+    useEffect(()=>{
+        let tooltip = d3.select("#result-header").select("#result-header-tooltip");
+        let headerCells = d3.select("#result-header").select(".result-row").selectAll(".result-header-cell")
+            headerCells.data(superClassConfigs)
+            .enter().append("div")
+                .on("mouseover", function(e, d) {
+                    console.log(d);
+                    console.log(e);
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html(`${d.name}` )
+                        .style("left", (e.clientX) + "px")
+                        .style("top", (e.clientY) + "px");
+                })
+                .on("mouseout", function(d) {
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                }).attr("class", "result-header-cell").append("h4").text(d=>formatName(d.name))
+        let headerCell = 0;
 
-                    </div>
-                )
-            })}
+    }, [])
+    return (
+        <div id={"result-header"} >
+            <div className={"result-row"}>
+                <div  className={"result-row-name"}>
+                    <h3>{""}</h3>
+                </div>
+            </div>
+
+            <div id={"result-header-tooltip"} className={"result-header-tooltip"}></div>
+            {/*{superClassConfigs.map((config, i) => {*/}
+            {/*    return (*/}
+            {/*        <div className={"result-header-cell"}>*/}
+            {/*            <h4>*/}
+            {/*                {formatName(config.name)}*/}
+            {/*            </h4>*/}
+
+            {/*        </div>*/}
+            {/*    )*/}
+            {/*})}*/}
         </div>
     )
 }
@@ -111,6 +138,7 @@ function ResultPanel({superClassConfigs, superClassMetrics, width, highlightSupe
                 }
 
             </div>
+
         </Card>
 
     )
