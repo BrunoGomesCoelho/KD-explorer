@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {CSSProperties, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ImageGrid from "./components/ImageGrid";
@@ -9,7 +9,7 @@ import ResultPanel from "./components/ResultPanel";
 import {ImageConfig, SuperClassConfig} from "./utils/interface";
 import {generateFakeImageConfigs, generateFakeClassPrediction, generateFakeMetrics} from "./utils/fake";
 import {generateClassConfigs} from "./utils/constants";
-import {getSuperClasses, getClassConfigs} from "./utils/data";
+import {getSuperClasses, getClassConfigs, searchSuperConfigByClassName, searchClassConfigByName} from "./utils/data";
 import {enumerateImages} from "./utils/image";
 
 function App() {
@@ -21,7 +21,6 @@ function App() {
         label: "any",
         class: "any"
     })
-    imageConfigs = imageConfigs.slice(0, 100)
     let classPredictions = generateFakeClassPrediction();
     let classConfigs = getClassConfigs();
     let superClassConfigs = getSuperClasses();
@@ -29,6 +28,20 @@ function App() {
     console.log(superClassConfigs);
     let leftWidth = 1000;
     let radialBarWidth = leftWidth / superClassConfigs.length;
+    let imageGridStyle: CSSProperties = {
+
+    }
+    let showingImages = imageConfigs
+    if(highlightSuper){
+        showingImages = imageConfigs.filter(image=>{
+            let config = searchClassConfigByName(image.class, classConfigs);
+            if(config && config.superclass === highlightSuper.name){
+                return true
+            }else{
+                return false;
+            }
+        })
+    }
     return (
         <div className="App">
             <div className={"container"}>
@@ -59,7 +72,7 @@ function App() {
                     </div>
 
                 </div>
-                <ImageGrid onClickPlay={onOpenImage} imageConfigs={imageConfigs}></ImageGrid>
+                <ImageGrid onClickPlay={onOpenImage} imageConfigs={showingImages}></ImageGrid>
             </div>
 
         </div>

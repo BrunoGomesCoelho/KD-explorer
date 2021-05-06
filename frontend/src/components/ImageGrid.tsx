@@ -45,6 +45,8 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
     let expanderWidth = Math.round(width - spacing*(columnNumber-2) )
     const [expandingImage, setExpandingImage] = useState<ImageConfig>();
     const [useDemoData, setUseDemoData] = useState<boolean>(false);
+
+    imageConfigs = imageConfigs.slice(0, 100)
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
             root: {
@@ -57,7 +59,7 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
                 paddingBottom: "20px",
                 // paddingLeft: "1px",
                 // paddingRight: "1px",
-                marginLeft: "10px",
+                marginLeft: "30px",
                 marginTop: "10px",
                 marginRight: "1px",
                 marginBottom: "10px",
