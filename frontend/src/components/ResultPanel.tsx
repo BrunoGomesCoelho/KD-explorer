@@ -55,18 +55,22 @@ function ResultHeader({superClassConfigs, cellWidth, indexWidth} : HeaderProps){
     )
 }
 
-function ResultRow({superClassMetric, superClassConfigs, indexWidth,cellWidth, metricName, highlightSuper}: RowProps) {
-    let setHighlight = () =>{
+function ResultRow({superClassMetric, superClassConfigs, indexWidth,cellWidth, metricName, highlightSuper, setHighlightSuper}: RowProps) {
 
-    }
     return (
         <div className={"result-row"}>
             <div  className={"result-row-name"}>
                 <h3>{metricName}</h3>
             </div>
             {superClassConfigs.map((config, i) => {
+                let setHighlight = () =>{
+                    setHighlightSuper(config);
+                }
                 let highlight = false;
+
                 if(highlightSuper?.name === config.name){
+                    highlight = true;
+                }else if(!highlightSuper){
                     highlight = true;
                 }
                 return (

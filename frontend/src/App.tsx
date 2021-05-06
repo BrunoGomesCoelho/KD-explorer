@@ -9,11 +9,54 @@ import ResultPanel from "./components/ResultPanel";
 import {ImageConfig, SuperClassConfig} from "./utils/interface";
 import {generateFakeImageConfigs, generateFakeClassPrediction, generateFakeMetrics} from "./utils/fake";
 import {generateClassConfigs} from "./utils/constants";
+import CloseIcon from "@material-ui/icons/Close";
+import IconButton from "@material-ui/core/IconButton";
 import {getSuperClasses, getClassConfigs, searchSuperConfigByClassName, searchClassConfigByName} from "./utils/data";
 import {enumerateImages} from "./utils/image";
+import {Card} from "@material-ui/core";
+import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
+
 
 function App() {
     const [highlightSuper, setHighlightSuper] = useState<SuperClassConfig>();
+    const [focusImage, setFocusImage] = useState<ImageConfig>()
+    function smartSetHighlightSuper  (config?: SuperClassConfig) {
+        console.log(highlightSuper);
+        setHighlightSuper((oldSuper)=>{
+            if(oldSuper?.name === config?.name){
+                return undefined
+            }else{
+                return config;
+            }
+        })
+        // if(config?.name === highlightSuper?.name){
+        //     setHighlightSuper(undefined)
+        // }else{
+        //     setHighlightSuper(config);
+        // }
+    }
+    const useStyles = makeStyles((theme: Theme) =>  createStyles({
+        featureMapRow: {
+            position: "relative",
+            bottom: 0,
+            display: "flex",
+            flexDirection: "row",
+            marginBottom: 30,
+            justifyContent: "space-around",
+            paddingTop: 30,
+            paddingBottom: 15,
+        },
+        icon: {
+            color: 'rgba(55, 55, 55, 0.54)',
+            position: "absolute",
+            top: 15,
+            right: 20,
+            width: 60,
+            height: 60
+        },
+
+    }));
+    const classes = useStyles();
     let onOpenImage = (config: ImageConfig) => {
         return
     }
@@ -42,22 +85,44 @@ function App() {
             }
         })
     }
+    let renderFeatureMaps = () => {
+        if(focusImage){
+            let teacherUrl = "https://storage.cloud.google.com/kd-explorer-cifar100/attention_maps/attention_map_10_0_0.png?_ga=2.153631100.-595614758.1616367036"
+            let studentUrl = "https://storage.cloud.google.com/kd-explorer-cifar100/attention_maps/attention_map_9_0_0.png?_ga=2.153631100.-595614758.1616367036"
+            let onClickClose = () =>{
+                setFocusImage(undefined);
+            }
+            return (
+                <Card className={classes.featureMapRow}>
+                    <FeatureMap name={"Teacher"} width={500} height={500} predictions={classPredictions} vid={"1"}
+                                classConfigs={classConfigs}
+                                src={teacherUrl}
+                    ></FeatureMap>
+
+                    <FeatureMap name={"Student"} width={500} height={500} predictions={classPredictions} vid={"2"}
+                                classConfigs={classConfigs}
+                                src={studentUrl}
+                    ></FeatureMap>
+                    <IconButton aria-label={`close`}
+                                className={classes.icon}>
+                        <CloseIcon onClick={()=>onClickClose()} />
+                    </IconButton>
+
+                </Card>
+            )
+        }
+    }
     return (
         <div className="App">
             <div className={"container"}>
                 <div className={"left"}>
 
                     <ResultPanel
-                        highlightSuper={highlightSuper} setHighlightSuper={setHighlightSuper}
+                        highlightSuper={highlightSuper} setHighlightSuper={smartSetHighlightSuper}
                         superClassConfigs={superClassConfigs} width={leftWidth} superClassMetrics={superClassMetrics}></ResultPanel>
-                    <div className={"featuremap-row"}>
-                        <FeatureMap name={"Teacher"} width={500} height={500} predictions={classPredictions} vid={"1"}
-                                    classConfigs={classConfigs}></FeatureMap>
-
-                        <FeatureMap name={"Student"} width={500} height={500} predictions={classPredictions} vid={"2"}
-                                    classConfigs={classConfigs}></FeatureMap>
-
-                    </div>
+                    {
+                        renderFeatureMaps()
+                    }
                     <div className={"matrix-row"}>
                         <MatrixView name={"Teacher"} width={500} height={500} predictions={classPredictions} vid={"1"}
                                     classConfigs={classConfigs} superClassConfigs={superClassConfigs}
@@ -72,7 +137,7 @@ function App() {
                     </div>
 
                 </div>
-                <ImageGrid onClickPlay={onOpenImage} imageConfigs={showingImages}></ImageGrid>
+                <ImageGrid setFocusImage={setFocusImage} onClickPlay={onOpenImage} imageConfigs={showingImages}></ImageGrid>
             </div>
 
         </div>

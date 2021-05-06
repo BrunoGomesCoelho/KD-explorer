@@ -41,16 +41,14 @@ function RadialBar ({width, height, vid, superClassConfig, accuracy, metricName,
         return getInnerRadius(index) + arcWidth;
     }
 
-    let colorMap = (i: string) =>{
-
-        let baseColor = d3.scaleOrdinal(d3.schemeCategory10)(i);
+    let colorMap = (i: number) =>{
+        let baseColor = d3.schemeCategory10[i];
         if (highlight){
             return baseColor
         }
         let baseD3Color = d3.hsl(baseColor);
         baseD3Color.s = baseD3Color.s * 0.3
         baseD3Color.l = baseD3Color.l * 1.2;
-        console.log(baseD3Color.h);
         let color = baseD3Color.formatRgb();
         return color
     }
@@ -98,7 +96,7 @@ function RadialBar ({width, height, vid, superClassConfig, accuracy, metricName,
             .data(accuracy)
             .enter().append('path')
             .attr('class', 'arc')
-            .style('fill', (d, i) => colorMap(i.toString()))
+            .style('fill', (d, i) => colorMap(i))
             .attr("d", arc)
             .on("mouseover", function(e, d) {
                 // console.log(d);
@@ -114,6 +112,9 @@ function RadialBar ({width, height, vid, superClassConfig, accuracy, metricName,
                 tooltip.transition()
                     .duration(500)
                     .style("opacity", 0);
+            })
+            .on("click", ()=>{
+                setHighlight();
             })
         // arcs.transition()
         //     .delay((d, i) => i * 200)

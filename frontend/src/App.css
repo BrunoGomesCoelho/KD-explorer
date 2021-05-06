@@ -29,6 +29,8 @@
   flex-direction: row;
   margin-bottom: 30px;
   justify-content: space-around;
+  padding-top: 30px;
+  padding-bottom: 15px;
 
 }
 @media (prefers-reduced-motion: no-preference) {

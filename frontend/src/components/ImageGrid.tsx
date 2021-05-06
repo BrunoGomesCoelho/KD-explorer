@@ -24,16 +24,18 @@ import List from '@material-ui/core/List';
 import ListItem from "@material-ui/core/ListItem";
 import ExpanderIcon from '@material-ui/icons/ExpandMore';
 import CloseExpanderIcon from '@material-ui/icons/ExpandLess';
+import InfoIcon from "@material-ui/icons/Info";
 interface ImageGridProps {
     onClickPlay: (config: ImageConfig) => void,
     imageConfigs: Array<ImageConfig>,
+    setFocusImage: (image: ImageConfig) => void
 }
 
 enum SortingWay {
     NoSorting, High2Low, Low2High,
 }
 
-function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
+function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
     let possibleViews = ['A', 'B', 'C', 'D'];
     let height = 680;
     let width = 960;
@@ -264,6 +266,22 @@ function ImageGrid({onClickPlay, imageConfigs}: ImageGridProps) {
                 {imageConfigs.map((image) => (
                     <GridListTile key={image.url} cols={ 1}>
                         <img src={image.url} alt={image.class} />
+                        <GridListTileBar
+                            title={image.class}
+                            subtitle={<span>super: {image.class}</span>}
+                            actionIcon={
+                                <IconButton aria-label={`info about ${image.id}`} className={classes.icon}
+                                    onClick={
+                                        ()=>{
+                                            setFocusImage(image)
+                                        }
+                                    }
+                                >
+
+                                    <InfoIcon />
+                                </IconButton>
+                            }
+                        />
                     </GridListTile>
                 ))}
             </GridList>

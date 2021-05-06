@@ -9,10 +9,11 @@ interface FeatureMapProps {
     predictions: Array<ClassPrediction>,
     vid: string,
     classConfigs: Array<ClassConfig>,
-    name: string
+    name: string,
+    src: string
 }
 
-function FeatureMap ({width, height, vid, name}: FeatureMapProps){
+function FeatureMap ({width, height, vid, name, src}: FeatureMapProps){
     const margin = {
         top: 30,
         left: 30,
@@ -23,12 +24,12 @@ function FeatureMap ({width, height, vid, name}: FeatureMapProps){
     let innerHeight = height - margin.top - margin.bottom;
 
     return (
-        <Card>
+        <Card className={"featuremap-card"}>
             <h3>
                 {name}
             </h3>
             <div className={"featuremap-placeholder"}>
-                <h5>Place for feature map</h5>
+                <img src={src}/>
             </div>
         </Card>
 
