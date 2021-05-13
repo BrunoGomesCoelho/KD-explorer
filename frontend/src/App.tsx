@@ -11,7 +11,13 @@ import {generateFakeImageConfigs, generateFakeClassPrediction, generateFakeMetri
 import {generateClassConfigs} from "./utils/constants";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
-import {getSuperClasses, getClassConfigs, searchSuperConfigByClassName, searchClassConfigByName} from "./utils/data";
+import {
+    getSuperClasses,
+    getClassConfigs,
+    searchSuperConfigByClassName,
+    searchClassConfigByName,
+    loadClassPrediction, loadMetrics
+} from "./utils/data";
 import {enumerateImages} from "./utils/image";
 import {Card} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
@@ -64,11 +70,11 @@ function App() {
         label: "any",
         class: "any"
     })
-    let classPredictions = generateFakeClassPrediction();
+    let classPredictions = loadClassPrediction();
     let classConfigs = getClassConfigs();
     let superClassConfigs = getSuperClasses();
-    let superClassMetrics = generateFakeMetrics(superClassConfigs);
-    console.log(superClassConfigs);
+    let superClassMetrics = loadMetrics(superClassConfigs)
+
     let leftWidth = 1000;
     let radialBarWidth = leftWidth / superClassConfigs.length;
     let imageGridStyle: CSSProperties = {
@@ -94,12 +100,12 @@ function App() {
             }
             return (
                 <Card className={classes.featureMapRow}>
-                    <FeatureMap name={"Teacher"} width={500} height={500} predictions={classPredictions} vid={"1"}
+                    <FeatureMap name={"Teacher"} width={350} height={350} predictions={classPredictions} vid={"1"}
                                 classConfigs={classConfigs}
                                 src={teacherUrl}
                     ></FeatureMap>
 
-                    <FeatureMap name={"Student"} width={500} height={500} predictions={classPredictions} vid={"2"}
+                    <FeatureMap name={"Student"} width={350} height={350} predictions={classPredictions} vid={"2"}
                                 classConfigs={classConfigs}
                                 src={studentUrl}
                     ></FeatureMap>
@@ -124,12 +130,12 @@ function App() {
                         renderFeatureMaps()
                     }
                     <div className={"matrix-row"}>
-                        <MatrixView name={"Teacher"} width={500} height={500} predictions={classPredictions} vid={"1"}
+                        <MatrixView name={"Teacher"} width={350} height={350} predictions={classPredictions} vid={"1"}
                                     classConfigs={classConfigs} superClassConfigs={superClassConfigs}
                                     highlightSuper={highlightSuper} setHighlightSuper={setHighlightSuper}
                         ></MatrixView>
 
-                        <MatrixView name={"Student"} width={500} height={500} predictions={classPredictions} vid={"2"}
+                        <MatrixView name={"Student"} width={350} height={350} predictions={classPredictions} vid={"2"}
                                     classConfigs={classConfigs} superClassConfigs={superClassConfigs}
                                     highlightSuper={highlightSuper} setHighlightSuper={setHighlightSuper}
                         ></MatrixView>
