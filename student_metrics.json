@@ -1,0 +1,602 @@
+{
+    "apple": {
+        "f1-score": 0.8131868131868132,
+        "precision": 0.9024390243902439,
+        "recall": 0.74,
+        "support": 100
+    },
+    "aquarium_fish": {
+        "f1-score": 0.7717391304347825,
+        "precision": 0.8452380952380952,
+        "recall": 0.71,
+        "support": 100
+    },
+    "baby": {
+        "f1-score": 0.5966850828729282,
+        "precision": 0.6666666666666666,
+        "recall": 0.54,
+        "support": 100
+    },
+    "bear": {
+        "f1-score": 0.29457364341085274,
+        "precision": 0.6551724137931034,
+        "recall": 0.19,
+        "support": 100
+    },
+    "beaver": {
+        "f1-score": 0.4200913242009133,
+        "precision": 0.3865546218487395,
+        "recall": 0.46,
+        "support": 100
+    },
+    "bed": {
+        "f1-score": 0.6424870466321244,
+        "precision": 0.6666666666666666,
+        "recall": 0.62,
+        "support": 100
+    },
+    "bee": {
+        "f1-score": 0.6363636363636364,
+        "precision": 0.7368421052631579,
+        "recall": 0.56,
+        "support": 100
+    },
+    "beetle": {
+        "f1-score": 0.5964912280701754,
+        "precision": 0.7183098591549296,
+        "recall": 0.51,
+        "support": 100
+    },
+    "bicycle": {
+        "f1-score": 0.7582417582417583,
+        "precision": 0.8414634146341463,
+        "recall": 0.69,
+        "support": 100
+    },
+    "bottle": {
+        "f1-score": 0.7415730337078651,
+        "precision": 0.8461538461538461,
+        "recall": 0.66,
+        "support": 100
+    },
+    "bowl": {
+        "f1-score": 0.4924623115577889,
+        "precision": 0.494949494949495,
+        "recall": 0.49,
+        "support": 100
+    },
+    "boy": {
+        "f1-score": 0.3948497854077253,
+        "precision": 0.3458646616541353,
+        "recall": 0.46,
+        "support": 100
+    },
+    "bridge": {
+        "f1-score": 0.6060606060606061,
+        "precision": 0.4878048780487805,
+        "recall": 0.8,
+        "support": 100
+    },
+    "bus": {
+        "f1-score": 0.5520833333333334,
+        "precision": 0.5760869565217391,
+        "recall": 0.53,
+        "support": 100
+    },
+    "butterfly": {
+        "f1-score": 0.4833333333333334,
+        "precision": 0.4142857142857143,
+        "recall": 0.58,
+        "support": 100
+    },
+    "camel": {
+        "f1-score": 0.631578947368421,
+        "precision": 0.6666666666666666,
+        "recall": 0.6,
+        "support": 100
+    },
+    "can": {
+        "f1-score": 0.6923076923076923,
+        "precision": 0.6666666666666666,
+        "recall": 0.72,
+        "support": 100
+    },
+    "castle": {
+        "f1-score": 0.7942583732057417,
+        "precision": 0.7614678899082569,
+        "recall": 0.83,
+        "support": 100
+    },
+    "caterpillar": {
+        "f1-score": 0.5198237885462555,
+        "precision": 0.4645669291338583,
+        "recall": 0.59,
+        "support": 100
+    },
+    "cattle": {
+        "f1-score": 0.5535714285714285,
+        "precision": 0.5,
+        "recall": 0.62,
+        "support": 100
+    },
+    "chair": {
+        "f1-score": 0.8041237113402062,
+        "precision": 0.8297872340425532,
+        "recall": 0.78,
+        "support": 100
+    },
+    "chimpanzee": {
+        "f1-score": 0.7386363636363636,
+        "precision": 0.8552631578947368,
+        "recall": 0.65,
+        "support": 100
+    },
+    "clock": {
+        "f1-score": 0.6701570680628273,
+        "precision": 0.7032967032967034,
+        "recall": 0.64,
+        "support": 100
+    },
+    "cloud": {
+        "f1-score": 0.6976744186046512,
+        "precision": 0.8333333333333334,
+        "recall": 0.6,
+        "support": 100
+    },
+    "cockroach": {
+        "f1-score": 0.7524752475247525,
+        "precision": 0.7450980392156863,
+        "recall": 0.76,
+        "support": 100
+    },
+    "couch": {
+        "f1-score": 0.5813953488372093,
+        "precision": 0.6944444444444444,
+        "recall": 0.5,
+        "support": 100
+    },
+    "crab": {
+        "f1-score": 0.5217391304347826,
+        "precision": 0.5714285714285714,
+        "recall": 0.48,
+        "support": 100
+    },
+    "crocodile": {
+        "f1-score": 0.40433212996389895,
+        "precision": 0.3163841807909605,
+        "recall": 0.56,
+        "support": 100
+    },
+    "cup": {
+        "f1-score": 0.7407407407407408,
+        "precision": 0.6896551724137931,
+        "recall": 0.8,
+        "support": 100
+    },
+    "dinosaur": {
+        "f1-score": 0.5894736842105264,
+        "precision": 0.6222222222222222,
+        "recall": 0.56,
+        "support": 100
+    },
+    "dolphin": {
+        "f1-score": 0.5636363636363637,
+        "precision": 0.5166666666666667,
+        "recall": 0.62,
+        "support": 100
+    },
+    "elephant": {
+        "f1-score": 0.6428571428571429,
+        "precision": 0.7941176470588235,
+        "recall": 0.54,
+        "support": 100
+    },
+    "flatfish": {
+        "f1-score": 0.582857142857143,
+        "precision": 0.68,
+        "recall": 0.51,
+        "support": 100
+    },
+    "forest": {
+        "f1-score": 0.5405405405405405,
+        "precision": 0.5882352941176471,
+        "recall": 0.5,
+        "support": 100
+    },
+    "fox": {
+        "f1-score": 0.6408839779005524,
+        "precision": 0.7160493827160493,
+        "recall": 0.58,
+        "support": 100
+    },
+    "girl": {
+        "f1-score": 0.4065934065934066,
+        "precision": 0.45121951219512196,
+        "recall": 0.37,
+        "support": 100
+    },
+    "hamster": {
+        "f1-score": 0.7231638418079096,
+        "precision": 0.8311688311688312,
+        "recall": 0.64,
+        "support": 100
+    },
+    "house": {
+        "f1-score": 0.6781609195402298,
+        "precision": 0.7972972972972973,
+        "recall": 0.59,
+        "support": 100
+    },
+    "kangaroo": {
+        "f1-score": 0.5149700598802395,
+        "precision": 0.6417910447761194,
+        "recall": 0.43,
+        "support": 100
+    },
+    "keyboard": {
+        "f1-score": 0.7715736040609137,
+        "precision": 0.7835051546391752,
+        "recall": 0.76,
+        "support": 100
+    },
+    "lamp": {
+        "f1-score": 0.5568181818181819,
+        "precision": 0.6447368421052632,
+        "recall": 0.49,
+        "support": 100
+    },
+    "lawn_mower": {
+        "f1-score": 0.8087431693989071,
+        "precision": 0.891566265060241,
+        "recall": 0.74,
+        "support": 100
+    },
+    "leopard": {
+        "f1-score": 0.5427509293680297,
+        "precision": 0.4319526627218935,
+        "recall": 0.73,
+        "support": 100
+    },
+    "lion": {
+        "f1-score": 0.6516853932584269,
+        "precision": 0.7435897435897436,
+        "recall": 0.58,
+        "support": 100
+    },
+    "lizard": {
+        "f1-score": 0.3082706766917293,
+        "precision": 0.2469879518072289,
+        "recall": 0.41,
+        "support": 100
+    },
+    "lobster": {
+        "f1-score": 0.43269230769230765,
+        "precision": 0.4166666666666667,
+        "recall": 0.45,
+        "support": 100
+    },
+    "man": {
+        "f1-score": 0.41747572815533984,
+        "precision": 0.4056603773584906,
+        "recall": 0.43,
+        "support": 100
+    },
+    "maple_tree": {
+        "f1-score": 0.5572139303482587,
+        "precision": 0.5544554455445545,
+        "recall": 0.56,
+        "support": 100
+    },
+    "motorcycle": {
+        "f1-score": 0.7796610169491526,
+        "precision": 0.6764705882352942,
+        "recall": 0.92,
+        "support": 100
+    },
+    "mountain": {
+        "f1-score": 0.7465437788018433,
+        "precision": 0.6923076923076923,
+        "recall": 0.81,
+        "support": 100
+    },
+    "mouse": {
+        "f1-score": 0.4615384615384615,
+        "precision": 0.6428571428571429,
+        "recall": 0.36,
+        "support": 100
+    },
+    "mushroom": {
+        "f1-score": 0.6086956521739131,
+        "precision": 0.5887850467289719,
+        "recall": 0.63,
+        "support": 100
+    },
+    "oak_tree": {
+        "f1-score": 0.6101694915254237,
+        "precision": 0.5294117647058824,
+        "recall": 0.72,
+        "support": 100
+    },
+    "orange": {
+        "f1-score": 0.8309178743961353,
+        "precision": 0.8037383177570093,
+        "recall": 0.86,
+        "support": 100
+    },
+    "orchid": {
+        "f1-score": 0.7397260273972603,
+        "precision": 0.680672268907563,
+        "recall": 0.81,
+        "support": 100
+    },
+    "otter": {
+        "f1-score": 0.27380952380952384,
+        "precision": 0.3382352941176471,
+        "recall": 0.23,
+        "support": 100
+    },
+    "palm_tree": {
+        "f1-score": 0.7606837606837609,
+        "precision": 0.664179104477612,
+        "recall": 0.89,
+        "support": 100
+    },
+    "pear": {
+        "f1-score": 0.6760563380281691,
+        "precision": 0.6371681415929203,
+        "recall": 0.72,
+        "support": 100
+    },
+    "pickup_truck": {
+        "f1-score": 0.7142857142857142,
+        "precision": 0.7926829268292683,
+        "recall": 0.65,
+        "support": 100
+    },
+    "pine_tree": {
+        "f1-score": 0.527363184079602,
+        "precision": 0.5247524752475248,
+        "recall": 0.53,
+        "support": 100
+    },
+    "plain": {
+        "f1-score": 0.7793427230046949,
+        "precision": 0.7345132743362832,
+        "recall": 0.83,
+        "support": 100
+    },
+    "plate": {
+        "f1-score": 0.6934673366834171,
+        "precision": 0.696969696969697,
+        "recall": 0.69,
+        "support": 100
+    },
+    "poppy": {
+        "f1-score": 0.7076923076923077,
+        "precision": 0.7263157894736842,
+        "recall": 0.69,
+        "support": 100
+    },
+    "porcupine": {
+        "f1-score": 0.5326633165829145,
+        "precision": 0.5353535353535354,
+        "recall": 0.53,
+        "support": 100
+    },
+    "possum": {
+        "f1-score": 0.5053763440860215,
+        "precision": 0.5465116279069767,
+        "recall": 0.47,
+        "support": 100
+    },
+    "rabbit": {
+        "f1-score": 0.43575418994413406,
+        "precision": 0.4936708860759494,
+        "recall": 0.39,
+        "support": 100
+    },
+    "raccoon": {
+        "f1-score": 0.5735294117647058,
+        "precision": 0.45348837209302323,
+        "recall": 0.78,
+        "support": 100
+    },
+    "ray": {
+        "f1-score": 0.4415584415584416,
+        "precision": 0.6296296296296297,
+        "recall": 0.34,
+        "support": 100
+    },
+    "road": {
+        "f1-score": 0.8584905660377358,
+        "precision": 0.8125,
+        "recall": 0.91,
+        "support": 100
+    },
+    "rocket": {
+        "f1-score": 0.6968325791855204,
+        "precision": 0.6363636363636364,
+        "recall": 0.77,
+        "support": 100
+    },
+    "rose": {
+        "f1-score": 0.5751633986928104,
+        "precision": 0.8301886792452831,
+        "recall": 0.44,
+        "support": 100
+    },
+    "sea": {
+        "f1-score": 0.6936936936936937,
+        "precision": 0.6311475409836066,
+        "recall": 0.77,
+        "support": 100
+    },
+    "seal": {
+        "f1-score": 0.2924528301886793,
+        "precision": 0.2767857142857143,
+        "recall": 0.31,
+        "support": 100
+    },
+    "shark": {
+        "f1-score": 0.44776119402985076,
+        "precision": 0.44554455445544555,
+        "recall": 0.45,
+        "support": 100
+    },
+    "shrew": {
+        "f1-score": 0.4242424242424242,
+        "precision": 0.37404580152671757,
+        "recall": 0.49,
+        "support": 100
+    },
+    "skunk": {
+        "f1-score": 0.7265306122448979,
+        "precision": 0.6137931034482759,
+        "recall": 0.89,
+        "support": 100
+    },
+    "skyscraper": {
+        "f1-score": 0.8393782383419689,
+        "precision": 0.8709677419354839,
+        "recall": 0.81,
+        "support": 100
+    },
+    "snail": {
+        "f1-score": 0.5152838427947598,
+        "precision": 0.4573643410852713,
+        "recall": 0.59,
+        "support": 100
+    },
+    "snake": {
+        "f1-score": 0.49411764705882355,
+        "precision": 0.6,
+        "recall": 0.42,
+        "support": 100
+    },
+    "spider": {
+        "f1-score": 0.6108374384236454,
+        "precision": 0.6019417475728155,
+        "recall": 0.62,
+        "support": 100
+    },
+    "squirrel": {
+        "f1-score": 0.4590163934426229,
+        "precision": 0.5060240963855421,
+        "recall": 0.42,
+        "support": 100
+    },
+    "streetcar": {
+        "f1-score": 0.6363636363636365,
+        "precision": 0.5833333333333334,
+        "recall": 0.7,
+        "support": 100
+    },
+    "sunflower": {
+        "f1-score": 0.8432432432432432,
+        "precision": 0.9176470588235294,
+        "recall": 0.78,
+        "support": 100
+    },
+    "sweet_pepper": {
+        "f1-score": 0.5550239234449761,
+        "precision": 0.5321100917431193,
+        "recall": 0.58,
+        "support": 100
+    },
+    "table": {
+        "f1-score": 0.5635359116022101,
+        "precision": 0.6296296296296297,
+        "recall": 0.51,
+        "support": 100
+    },
+    "tank": {
+        "f1-score": 0.7251461988304093,
+        "precision": 0.8732394366197183,
+        "recall": 0.62,
+        "support": 100
+    },
+    "telephone": {
+        "f1-score": 0.7311827956989247,
+        "precision": 0.7906976744186046,
+        "recall": 0.68,
+        "support": 100
+    },
+    "television": {
+        "f1-score": 0.6752136752136753,
+        "precision": 0.5895522388059702,
+        "recall": 0.79,
+        "support": 100
+    },
+    "tiger": {
+        "f1-score": 0.6700507614213199,
+        "precision": 0.6804123711340206,
+        "recall": 0.66,
+        "support": 100
+    },
+    "tractor": {
+        "f1-score": 0.7150837988826816,
+        "precision": 0.810126582278481,
+        "recall": 0.64,
+        "support": 100
+    },
+    "train": {
+        "f1-score": 0.6666666666666666,
+        "precision": 0.6956521739130435,
+        "recall": 0.64,
+        "support": 100
+    },
+    "trout": {
+        "f1-score": 0.6440677966101696,
+        "precision": 0.5588235294117647,
+        "recall": 0.76,
+        "support": 100
+    },
+    "tulip": {
+        "f1-score": 0.5673076923076923,
+        "precision": 0.5462962962962963,
+        "recall": 0.59,
+        "support": 100
+    },
+    "turtle": {
+        "f1-score": 0.45454545454545453,
+        "precision": 0.45918367346938777,
+        "recall": 0.45,
+        "support": 100
+    },
+    "wardrobe": {
+        "f1-score": 0.8421052631578948,
+        "precision": 0.8888888888888888,
+        "recall": 0.8,
+        "support": 100
+    },
+    "whale": {
+        "f1-score": 0.580952380952381,
+        "precision": 0.5545454545454546,
+        "recall": 0.61,
+        "support": 100
+    },
+    "willow_tree": {
+        "f1-score": 0.4624277456647399,
+        "precision": 0.547945205479452,
+        "recall": 0.4,
+        "support": 100
+    },
+    "wolf": {
+        "f1-score": 0.6486486486486486,
+        "precision": 0.7058823529411765,
+        "recall": 0.6,
+        "support": 100
+    },
+    "woman": {
+        "f1-score": 0.4228571428571429,
+        "precision": 0.49333333333333335,
+        "recall": 0.37,
+        "support": 100
+    },
+    "worm": {
+        "f1-score": 0.5882352941176471,
+        "precision": 0.4838709677419355,
+        "recall": 0.75,
+        "support": 100
+    }
+}
