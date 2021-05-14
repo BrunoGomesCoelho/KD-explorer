@@ -18,8 +18,8 @@ function getImageUrl(imageConfig: ImageConfig | undefined){
         // realName = classNameTranslation.get(category)!==undefined?classNameTranslation.get(category):category;
     }
     let imageId = imageConfig?.id;
-    let url = `https://storage.cloud.google.com/kd-explorer-cifar100/cifar-100/${"test"}/${realName}/${imageId}.png`
-    console.log(url);
+    // let url = `https://storage.cloud.google.com/kd-explorer-cifar100/cifar-100/${"test"}/${realName}/${imageId}.png`
+    let url = `https://storage.googleapis.com/kd-explorer-cifar100/cifar-100/${"test"}/${realName}/${imageId}.png`
     return url;
     // if(imageConfig){
     //     return imageConfig.url;
