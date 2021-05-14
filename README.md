@@ -6,3 +6,9 @@ This project is broken into 2 other branches, with this one housing just the rep
 - frontend/ Contains the code for the react app used in our interactive visualization tool
 - models/ Contains the code for downloading and training our student/teacher models
 
+## Running the Interface
+```shell
+cd ./frontend
+yarn
+yarn start
+```
