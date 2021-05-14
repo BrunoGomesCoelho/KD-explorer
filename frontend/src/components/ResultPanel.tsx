@@ -83,7 +83,6 @@ function ResultHeader({superClassConfigs, cellWidth, indexWidth} : HeaderProps){
 }
 
 function ResultRow({superClassMetric, superClassConfigs, indexWidth,cellWidth, metricName, highlightSuper, setHighlightSuper}: RowProps) {
-
     return (
         <div className={"result-row"}>
             <div  className={"result-row-name"}>
@@ -116,6 +115,7 @@ function ResultPanel({superClassConfigs, superClassMetrics, width, highlightSupe
     let indexWidth = 100
     let cellWidth =  ( width - indexWidth ) / superClassConfigs.length;
     let metricNames = METRICS;
+    console.log(superClassMetrics)
     return (
         <Card className={"result-card"}>
             <div className={"result-header"}>

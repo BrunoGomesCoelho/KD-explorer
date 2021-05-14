@@ -1,6 +1,7 @@
 import {ImageConfig, ImageData, ImageQuery} from "./interface";
-import {getClassList} from "./data";
-
+import {getClassList, } from "./data";
+import {classNameTranslation, loadClassNameTranslation} from "./translation";
+const imageClassNameTranslation = loadClassNameTranslation();
 function describeImage(imageConfig: ImageConfig) {
     return {
         title: imageConfig.class,
@@ -10,15 +11,26 @@ function describeImage(imageConfig: ImageConfig) {
 
 
 function getImageUrl(imageConfig: ImageConfig | undefined){
-    if(imageConfig){
-        return imageConfig.url;
+    let category = imageConfig?.class!;
+    let realName: string | undefined = category;
+    if (imageClassNameTranslation.has(category)){
+        realName = imageClassNameTranslation.get(category)!;
+        // realName = classNameTranslation.get(category)!==undefined?classNameTranslation.get(category):category;
     }
+    let imageId = imageConfig?.id;
+    let url = `https://storage.cloud.google.com/kd-explorer-cifar100/cifar-100/${"test"}/${realName}/${imageId}.png`
+    console.log(url);
+    return url;
+    // if(imageConfig){
+    //     return imageConfig.url;
+    // }
     return "https://storage.googleapis.com/ltpt-videos/video-images/AFL%20Video-181101_AFL-PEORIA_AFL-SCOTTSDALE__0-3367-A.png";
 
 }
 
 function enumerateImagesOfLabelAndCategory(label:string, category: string): Array<ImageConfig>{
     let images = []
+
     for (let i = 0; i < 50; i++){
         let imageId = (i+1).toString().padStart(4, "0");
         let url = `https://storage.cloud.google.com/kd-explorer-cifar100/cifar-100/${label}/${category}/${imageId}.png`
@@ -37,6 +49,7 @@ function enumerateImagesOfLabel(label: string, category: string) : Array<ImageCo
     if(category === "any"){
         let classList = getClassList();
         for (let category of classList){
+
             let categoryImages = enumerateImagesOfLabelAndCategory(label, category);
             images.push(...categoryImages);
         }

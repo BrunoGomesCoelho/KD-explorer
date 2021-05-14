@@ -28,13 +28,22 @@ function MatrixView ({width, height, vid, classConfigs, predictions, name, super
     let svgId = "matrix-" + vid;
     let containerId = "matrix-container-" + vid;
     let colorMap = (prediction: ClassPrediction) =>{
+        let value = prediction.probability;
+        if(value === 0){
 
-        let baseColor = d3.interpolateBlues(prediction.probability)
+        }else{
+            value = 0.8 * (Math.log(1 + value) / Math.log(2)) + 0.2 ;
+        }
+        let baseColor = d3.interpolateBlues(value)
+        if(! highlightSuper){
+
+            return baseColor;
+        }
         if (highlightSuper && (highlightSuper.classes.includes(prediction.prediction) || highlightSuper.classes.includes(prediction.class) )){
             return baseColor
         }
         let baseD3Color = d3.hsl(baseColor);
-        baseD3Color.s = baseD3Color.s * 0.3
+        baseD3Color.s = baseD3Color.s * 0.5
         baseD3Color.l = baseD3Color.l * 1.2;
         let color = baseD3Color.formatRgb();
         return color
