@@ -74,9 +74,9 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
                 // paddingRight: "1px",
                 marginLeft: "30px",
                 marginTop: "10px",
-                marginRight: "1px",
+                marginRight: "30px",
                 marginBottom: "10px",
-                height: "1400px"
+                height: "900px"
                 // overflowY: "scroll"
             },
             gridList: {
@@ -285,7 +285,7 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
             <GridList cellHeight={160} className={classes.gridList} cols={6}>
                 {imageConfigs.map((image) => (
                     <GridListTile key={image.url} cols={ 1}>
-                        <img src={image.url} alt={image.class} />
+                        <img src={getImageUrl(image)} alt={image.class} />
                         <GridListTileBar
                             title={image.class}
                             subtitle={<span>super: {image.class}</span>}
@@ -325,39 +325,39 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
                         }
                    </Select>
                 </FormControl>
-                <FormControlLabel className={classes.headerItem}
-                                  control={
-                                      <Switch
-                                          checked={sorting === SortingWay.High2Low}
-                                          onChange={() => handleSwitchChange(SortingWay.High2Low)}
-                                          name="high2low"
-                                          color="primary"
-                                      />
-                                  }
-                                  label="High"
-                />
-                <FormControlLabel className={classes.headerItem}
-                                  control={
-                                      <Switch
-                                          checked={sorting === SortingWay.Low2High}
-                                          onChange={() => handleSwitchChange(SortingWay.Low2High)}
-                                          name="low2high"
-                                          color="primary"
-                                      />
-                                  }
-                                  label="Low"
-                />
-                <FormControlLabel className={classes.headerItem}
-                                  control={
-                                      <Switch
-                                          checked={useDemoData}
-                                          onChange={() => {setUseDemoData(!useDemoData)}}
-                                          name="demoData"
-                                          color="primary"
-                                      />
-                                  }
-                                  label="Demo Data"
-                />
+                {/*<FormControlLabel className={classes.headerItem}*/}
+                {/*                  control={*/}
+                {/*                      <Switch*/}
+                {/*                          checked={sorting === SortingWay.High2Low}*/}
+                {/*                          onChange={() => handleSwitchChange(SortingWay.High2Low)}*/}
+                {/*                          name="high2low"*/}
+                {/*                          color="primary"*/}
+                {/*                      />*/}
+                {/*                  }*/}
+                {/*                  label="High"*/}
+                {/*/>*/}
+                {/*<FormControlLabel className={classes.headerItem}*/}
+                {/*                  control={*/}
+                {/*                      <Switch*/}
+                {/*                          checked={sorting === SortingWay.Low2High}*/}
+                {/*                          onChange={() => handleSwitchChange(SortingWay.Low2High)}*/}
+                {/*                          name="low2high"*/}
+                {/*                          color="primary"*/}
+                {/*                      />*/}
+                {/*                  }*/}
+                {/*                  label="Low"*/}
+                {/*/>*/}
+                {/*<FormControlLabel className={classes.headerItem}*/}
+                {/*                  control={*/}
+                {/*                      <Switch*/}
+                {/*                          checked={useDemoData}*/}
+                {/*                          onChange={() => {setUseDemoData(!useDemoData)}}*/}
+                {/*                          name="demoData"*/}
+                {/*                          color="primary"*/}
+                {/*                      />*/}
+                {/*                  }*/}
+                {/*                  label="Demo Data"*/}
+                {/*/>*/}
             </div>
             {/*<div className={classes.gridContainer}>*/}
                 {

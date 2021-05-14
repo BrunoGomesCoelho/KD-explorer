@@ -11,6 +11,7 @@ import {generateFakeAccuracy} from "./fake";
 import internal from "stream";
 import {classNameTranslation, loadClassNameTranslation} from "./translation";
 import {type} from "os";
+const classIndex = [77, 24, 50, 20, 27, 96, 18, 88, 98, 33, 30, 93, 38, 45, 64, 28, 4, 84, 9, 56, 97, 21, 74, 49, 71, 69, 73, 41, 6, 43, 85, 78, 2, 58, 15, 46, 10, 17, 36, 55, 51, 94, 40, 91, 31, 68, 82, 29, 37, 47, 60, 34, 54, 26, 99, 75, 80, 66, 32, 0, 13, 35, 57, 79, 81, 52, 8, 39, 16, 83, 63, 23, 7, 44, 53, 67, 90, 95, 61, 92, 89, 76, 3, 5, 14, 65, 59, 22, 11, 87, 25, 19, 42, 1, 70, 72, 62, 86, 12, 48]
 
 function getSuperClasses(): Array<SuperClassConfig>{
     let arr = [];
@@ -38,15 +39,33 @@ function getClassList(): Array<string>{
 function getClassConfigs(): Array<ClassConfig>{
     let arr = [];
     let count = 0
+
+    let classes = []
+    for(let item of superClassData){
+        classes.push(...item.classes);
+    }
+    classes.sort()
+    console.log(classes)
+
     for (let item of superClassData){
+
         for (let classname of item.classes){
+            let classNameMap = loadClassNameTranslation();
+            let translation = classname;
+            if(classNameMap.has(classname)){
+                translation = classNameMap.get(classname)!;
+            }
+            let idx = classes.indexOf(classname)
             arr.push({
                 name: classname,
                 superclass: item.super,
-                idx: count
+                idx: classIndex.indexOf(idx),
+                translation: translation,
             })
+
+            count += 1;
         };
-        count += 1;
+
 
     }
     console.log(arr);

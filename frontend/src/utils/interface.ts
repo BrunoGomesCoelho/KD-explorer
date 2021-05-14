@@ -16,6 +16,7 @@ interface ClassPrediction {
 interface ClassConfig {
     name: string,
     superclass: string,
+    translation?: string,
     idx?: number
 }
 
