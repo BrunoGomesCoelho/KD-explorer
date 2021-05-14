@@ -14,4 +14,4 @@ yarn start
 ```
 ---
 
-We also attach our final report PDF.
+We also attach our final [report PDF](CSGY_9223_Viz_for_ML___Final_Report.pdf).
