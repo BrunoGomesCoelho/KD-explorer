@@ -11,7 +11,13 @@ import {generateFakeImageConfigs, generateFakeClassPrediction, generateFakeMetri
 import {generateClassConfigs} from "./utils/constants";
 import CloseIcon from "@material-ui/icons/Close";
 import IconButton from "@material-ui/core/IconButton";
-import {getSuperClasses, getClassConfigs, searchSuperConfigByClassName, searchClassConfigByName} from "./utils/data";
+import {
+    getSuperClasses,
+    getClassConfigs,
+    searchSuperConfigByClassName,
+    searchClassConfigByName,
+    loadStudentConfusionMatrix, loadTeacherConfusionMatrix, loadMetrics
+} from "./utils/data";
 import {enumerateImages} from "./utils/image";
 import {Card} from "@material-ui/core";
 import {createStyles, makeStyles, Theme} from "@material-ui/core/styles";
@@ -21,7 +27,6 @@ function App() {
     const [highlightSuper, setHighlightSuper] = useState<SuperClassConfig>();
     const [focusImage, setFocusImage] = useState<ImageConfig>()
     function smartSetHighlightSuper  (config?: SuperClassConfig) {
-        console.log(highlightSuper);
         setHighlightSuper((oldSuper)=>{
             if(oldSuper?.name === config?.name){
                 return undefined
@@ -64,11 +69,12 @@ function App() {
         label: "any",
         class: "any"
     })
-    let classPredictions = generateFakeClassPrediction();
+    let studentConfusionMatrix = loadStudentConfusionMatrix();
+    let teacherConfusionMatrix = loadTeacherConfusionMatrix();
     let classConfigs = getClassConfigs();
     let superClassConfigs = getSuperClasses();
-    let superClassMetrics = generateFakeMetrics(superClassConfigs);
-    console.log(superClassConfigs);
+    let superClassMetrics = loadMetrics(superClassConfigs)
+
     let leftWidth = 1000;
     let radialBarWidth = leftWidth / superClassConfigs.length;
     let imageGridStyle: CSSProperties = {
@@ -87,19 +93,20 @@ function App() {
     }
     let renderFeatureMaps = () => {
         if(focusImage){
-            let teacherUrl = "https://storage.cloud.google.com/kd-explorer-cifar100/attention_maps/attention_map_10_0_0.png?_ga=2.153631100.-595614758.1616367036"
-            let studentUrl = "https://storage.cloud.google.com/kd-explorer-cifar100/attention_maps/attention_map_9_0_0.png?_ga=2.153631100.-595614758.1616367036"
+            let classConfig = searchClassConfigByName(focusImage.class, classConfigs);
+            let studentUrl = `http://localhost:3000/attention_maps/student_attention_maps/attention_map_${classConfig?.idx}_0_0.png`
+            let teacherUrl = `http://localhost:3000/attention_maps/teacher_attention_maps/attention_map_${classConfig?.idx}_0_0.png`
             let onClickClose = () =>{
                 setFocusImage(undefined);
             }
             return (
                 <Card className={classes.featureMapRow}>
-                    <FeatureMap name={"Teacher"} width={500} height={500} predictions={classPredictions} vid={"1"}
+                    <FeatureMap name={"Teacher"} width={350} height={350} predictions={teacherConfusionMatrix} vid={"1"}
                                 classConfigs={classConfigs}
                                 src={teacherUrl}
                     ></FeatureMap>
 
-                    <FeatureMap name={"Student"} width={500} height={500} predictions={classPredictions} vid={"2"}
+                    <FeatureMap name={"Student"} width={350} height={350} predictions={studentConfusionMatrix} vid={"2"}
                                 classConfigs={classConfigs}
                                 src={studentUrl}
                     ></FeatureMap>
@@ -124,12 +131,12 @@ function App() {
                         renderFeatureMaps()
                     }
                     <div className={"matrix-row"}>
-                        <MatrixView name={"Teacher"} width={500} height={500} predictions={classPredictions} vid={"1"}
+                        <MatrixView name={"Teacher"} width={350} height={350} predictions={teacherConfusionMatrix} vid={"1"}
                                     classConfigs={classConfigs} superClassConfigs={superClassConfigs}
                                     highlightSuper={highlightSuper} setHighlightSuper={setHighlightSuper}
                         ></MatrixView>
 
-                        <MatrixView name={"Student"} width={500} height={500} predictions={classPredictions} vid={"2"}
+                        <MatrixView name={"Student"} width={350} height={350} predictions={studentConfusionMatrix} vid={"2"}
                                     classConfigs={classConfigs} superClassConfigs={superClassConfigs}
                                     highlightSuper={highlightSuper} setHighlightSuper={setHighlightSuper}
                         ></MatrixView>

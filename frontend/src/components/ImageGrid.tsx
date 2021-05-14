@@ -11,7 +11,7 @@ import IconButton from '@material-ui/core/IconButton';
 import PlayerIcon from '@material-ui/icons/PlayCircleOutline';
 import FormControl from '@material-ui/core/FormControl'
 import {describeImage, getImageUrl} from "../utils/image";
-import {ImageConfig, ImageData} from '../utils/interface'
+import {ClassConfig, ImageConfig, ImageData} from '../utils/interface'
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
@@ -37,6 +37,7 @@ enum SortingWay {
 
 function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
     let possibleViews = ['A', 'B', 'C', 'D'];
+    const [showingClass, setShowingClass] = useState<string>();
     let height = 680;
     let width = 960;
     let columnNumber = 3;
@@ -47,7 +48,17 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
     let expanderWidth = Math.round(width - spacing*(columnNumber-2) )
     const [expandingImage, setExpandingImage] = useState<ImageConfig>();
     const [useDemoData, setUseDemoData] = useState<boolean>(false);
+    let validClasses : Array<string> = [];
+    for (let image of imageConfigs){
+        if (validClasses.includes(image.class)){
 
+        }else{
+            validClasses.push(image.class)
+        }
+    }
+    if(showingClass){
+        imageConfigs = imageConfigs.filter(c=>c.class===showingClass)
+    }
     imageConfigs = imageConfigs.slice(0, 100)
     const useStyles = makeStyles((theme: Theme) =>
         createStyles({
@@ -63,9 +74,9 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
                 // paddingRight: "1px",
                 marginLeft: "30px",
                 marginTop: "10px",
-                marginRight: "1px",
+                marginRight: "30px",
                 marginBottom: "10px",
-                height: "1400px"
+                height: "900px"
                 // overflowY: "scroll"
             },
             gridList: {
@@ -189,14 +200,20 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
         }),
     );
     const classes = useStyles();
+
     const [metricShowing, setMetricShowing] = useState<string>();
     const [sorting, setSorting] = useState<SortingWay>()
     const handleMetricChange = (event: React.ChangeEvent<{ value: unknown }>) => {
         setMetricShowing(event.target.value as string);
     };
 
+    const handleShowingClassChange = (event: React.ChangeEvent<{value: unknown}>) => {
+        console.log(event.target.value as string)
+        setShowingClass(event.target.value as string)
+    }
 
-    let defaultColumn = "";
+
+    let defaultColumn = "Clock";
 
     let realShowingMetric = metricShowing ? metricShowing : defaultColumn;
     if (realShowingMetric) {
@@ -260,12 +277,15 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
         )
     }
 
+    let renderClassSelect = (classname: string) => {
+        return (<MenuItem value={classname}>{classname}</MenuItem>)
+    }
     let renderImages = () => {
         return (
             <GridList cellHeight={160} className={classes.gridList} cols={6}>
                 {imageConfigs.map((image) => (
                     <GridListTile key={image.url} cols={ 1}>
-                        <img src={image.url} alt={image.class} />
+                        <img src={getImageUrl(image)} alt={image.class} />
                         <GridListTileBar
                             title={image.class}
                             subtitle={<span>super: {image.class}</span>}
@@ -293,48 +313,51 @@ function ImageGrid({onClickPlay, imageConfigs, setFocusImage}: ImageGridProps) {
         <Card className={classes.root}>
             <div className={classes.header}>
                 <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-label">Metric</InputLabel>
+                    <InputLabel id="demo-simple-select-label">Class</InputLabel>
                     <Select
                         labelId="demo-simple-select-label"
                         id="demo-simple-select"
-                        value={metricShowing ? metricShowing : defaultColumn}
-                        onChange={handleMetricChange}
+                        value={showingClass ? showingClass : defaultColumn}
+                        onChange={handleShowingClassChange}
                     >
+                        {
+                            validClasses.map(renderClassSelect)
+                        }
                    </Select>
                 </FormControl>
-                <FormControlLabel className={classes.headerItem}
-                                  control={
-                                      <Switch
-                                          checked={sorting === SortingWay.High2Low}
-                                          onChange={() => handleSwitchChange(SortingWay.High2Low)}
-                                          name="high2low"
-                                          color="primary"
-                                      />
-                                  }
-                                  label="High"
-                />
-                <FormControlLabel className={classes.headerItem}
-                                  control={
-                                      <Switch
-                                          checked={sorting === SortingWay.Low2High}
-                                          onChange={() => handleSwitchChange(SortingWay.Low2High)}
-                                          name="low2high"
-                                          color="primary"
-                                      />
-                                  }
-                                  label="Low"
-                />
-                <FormControlLabel className={classes.headerItem}
-                                  control={
-                                      <Switch
-                                          checked={useDemoData}
-                                          onChange={() => {setUseDemoData(!useDemoData)}}
-                                          name="demoData"
-                                          color="primary"
-                                      />
-                                  }
-                                  label="Demo Data"
-                />
+                {/*<FormControlLabel className={classes.headerItem}*/}
+                {/*                  control={*/}
+                {/*                      <Switch*/}
+                {/*                          checked={sorting === SortingWay.High2Low}*/}
+                {/*                          onChange={() => handleSwitchChange(SortingWay.High2Low)}*/}
+                {/*                          name="high2low"*/}
+                {/*                          color="primary"*/}
+                {/*                      />*/}
+                {/*                  }*/}
+                {/*                  label="High"*/}
+                {/*/>*/}
+                {/*<FormControlLabel className={classes.headerItem}*/}
+                {/*                  control={*/}
+                {/*                      <Switch*/}
+                {/*                          checked={sorting === SortingWay.Low2High}*/}
+                {/*                          onChange={() => handleSwitchChange(SortingWay.Low2High)}*/}
+                {/*                          name="low2high"*/}
+                {/*                          color="primary"*/}
+                {/*                      />*/}
+                {/*                  }*/}
+                {/*                  label="Low"*/}
+                {/*/>*/}
+                {/*<FormControlLabel className={classes.headerItem}*/}
+                {/*                  control={*/}
+                {/*                      <Switch*/}
+                {/*                          checked={useDemoData}*/}
+                {/*                          onChange={() => {setUseDemoData(!useDemoData)}}*/}
+                {/*                          name="demoData"*/}
+                {/*                          color="primary"*/}
+                {/*                      />*/}
+                {/*                  }*/}
+                {/*                  label="Demo Data"*/}
+                {/*/>*/}
             </div>
             {/*<div className={classes.gridContainer}>*/}
                 {
