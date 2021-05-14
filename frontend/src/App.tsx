@@ -16,7 +16,7 @@ import {
     getClassConfigs,
     searchSuperConfigByClassName,
     searchClassConfigByName,
-    loadClassPrediction, loadMetrics
+    loadStudentConfusionMatrix, loadTeacherConfusionMatrix, loadMetrics
 } from "./utils/data";
 import {enumerateImages} from "./utils/image";
 import {Card} from "@material-ui/core";
@@ -27,7 +27,6 @@ function App() {
     const [highlightSuper, setHighlightSuper] = useState<SuperClassConfig>();
     const [focusImage, setFocusImage] = useState<ImageConfig>()
     function smartSetHighlightSuper  (config?: SuperClassConfig) {
-        console.log(highlightSuper);
         setHighlightSuper((oldSuper)=>{
             if(oldSuper?.name === config?.name){
                 return undefined
@@ -70,7 +69,8 @@ function App() {
         label: "any",
         class: "any"
     })
-    let classPredictions = loadClassPrediction();
+    let studentConfusionMatrix = loadStudentConfusionMatrix();
+    let teacherConfusionMatrix = loadTeacherConfusionMatrix();
     let classConfigs = getClassConfigs();
     let superClassConfigs = getSuperClasses();
     let superClassMetrics = loadMetrics(superClassConfigs)
@@ -100,12 +100,12 @@ function App() {
             }
             return (
                 <Card className={classes.featureMapRow}>
-                    <FeatureMap name={"Teacher"} width={350} height={350} predictions={classPredictions} vid={"1"}
+                    <FeatureMap name={"Teacher"} width={350} height={350} predictions={teacherConfusionMatrix} vid={"1"}
                                 classConfigs={classConfigs}
                                 src={teacherUrl}
                     ></FeatureMap>
 
-                    <FeatureMap name={"Student"} width={350} height={350} predictions={classPredictions} vid={"2"}
+                    <FeatureMap name={"Student"} width={350} height={350} predictions={studentConfusionMatrix} vid={"2"}
                                 classConfigs={classConfigs}
                                 src={studentUrl}
                     ></FeatureMap>
@@ -130,12 +130,12 @@ function App() {
                         renderFeatureMaps()
                     }
                     <div className={"matrix-row"}>
-                        <MatrixView name={"Teacher"} width={350} height={350} predictions={classPredictions} vid={"1"}
+                        <MatrixView name={"Teacher"} width={350} height={350} predictions={teacherConfusionMatrix} vid={"1"}
                                     classConfigs={classConfigs} superClassConfigs={superClassConfigs}
                                     highlightSuper={highlightSuper} setHighlightSuper={setHighlightSuper}
                         ></MatrixView>
 
-                        <MatrixView name={"Student"} width={350} height={350} predictions={classPredictions} vid={"2"}
+                        <MatrixView name={"Student"} width={350} height={350} predictions={studentConfusionMatrix} vid={"2"}
                                     classConfigs={classConfigs} superClassConfigs={superClassConfigs}
                                     highlightSuper={highlightSuper} setHighlightSuper={setHighlightSuper}
                         ></MatrixView>
