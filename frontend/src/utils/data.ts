@@ -37,15 +37,19 @@ function getClassList(): Array<string>{
 
 function getClassConfigs(): Array<ClassConfig>{
     let arr = [];
+    let count = 0
     for (let item of superClassData){
         for (let classname of item.classes){
             arr.push({
                 name: classname,
                 superclass: item.super,
+                idx: count
             })
-        }
+        };
+        count += 1;
 
     }
+    console.log(arr);
     return arr;
 
 }
@@ -105,7 +109,6 @@ function loadConfusionMatrix(confusionMatrix: object){
         }
     }
     for(let entry of Object.entries(confusionMatrix)){
-        // console.log(entry)
         let count = 0;
         let classArr : Array<ClassPrediction>= []
         for (let subEntry of Object.entries(entry[1])){
@@ -116,10 +119,7 @@ function loadConfusionMatrix(confusionMatrix: object){
         for (let subEntry of Object.entries(entry[1])){
             let realClassName = translateNameOfData(entry[0]);
             let realPredictionName = translateNameOfData(subEntry[0]);
-            // console.log(entry[0], realClassName);
-            // console.log(realC)
             if(typeof subEntry[1] == "number"){
-                console.log(subEntry[1] / count)
                 classArr.push({
                     class: realClassName,
                     prediction: realPredictionName,
@@ -140,7 +140,6 @@ function loadConfusionMatrix(confusionMatrix: object){
     //         }
     //     }
     //
-    //     console.log(key);
     // }
 }
 
@@ -221,7 +220,6 @@ function loadMetrics(superClasses: Array<SuperClassConfig>){
         metrics.set(metricName, metricObject)
         // metrics.set(name, generateFakeAccuracy(superClasses));
     }
-    console.log(metrics)
     return metrics
 }
 

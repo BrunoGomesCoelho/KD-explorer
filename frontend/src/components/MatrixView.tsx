@@ -28,8 +28,13 @@ function MatrixView ({width, height, vid, classConfigs, predictions, name, super
     let svgId = "matrix-" + vid;
     let containerId = "matrix-container-" + vid;
     let colorMap = (prediction: ClassPrediction) =>{
+        let value = prediction.probability;
+        if(value === 0){
 
-        let baseColor = d3.interpolateBlues(prediction.probability)
+        }else{
+            value = 0.8 * (Math.log(1 + value) / Math.log(2)) + 0.2 ;
+        }
+        let baseColor = d3.interpolateBlues(value)
         if(! highlightSuper){
 
             return baseColor;

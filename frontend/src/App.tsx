@@ -93,8 +93,9 @@ function App() {
     }
     let renderFeatureMaps = () => {
         if(focusImage){
-            let teacherUrl = "https://storage.cloud.google.com/kd-explorer-cifar100/attention_maps/attention_map_10_0_0.png?_ga=2.153631100.-595614758.1616367036"
-            let studentUrl = "https://storage.cloud.google.com/kd-explorer-cifar100/attention_maps/attention_map_9_0_0.png?_ga=2.153631100.-595614758.1616367036"
+            let classConfig = searchClassConfigByName(focusImage.class, classConfigs);
+            let studentUrl = `http://localhost:3000/attention_maps/student_attention_maps/attention_map_${classConfig?.idx}_0_0.png`
+            let teacherUrl = `http://localhost:3000/attention_maps/teacher_attention_maps/attention_map_${classConfig?.idx}_0_0.png`
             let onClickClose = () =>{
                 setFocusImage(undefined);
             }
